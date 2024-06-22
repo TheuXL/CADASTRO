@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>498</width>
+    <height>585</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Cadastro de Produtos</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number> 
+      </property>
+      <widget class="QWidget" name="tab_cadastro">
+       <attribute name="title">
+        <string>Cadastro</string>
+       </attribute>
+       <layout class="QFormLayout" name="formLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_nome">
+          <property name="text">
+           <string>Nome do Produto:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="lineEdit_nome"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_descricao">
+          <property name="text">
+           <string>Descrição:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="lineEdit_descricao"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_valor">
+          <property name="text">
+           <string>Valor:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QDoubleSpinBox" name="doubleSpinBox_valor"/>
+         </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_disponibilidade">
+          <property name="text">
+           <string>Disponível:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QComboBox" name="comboBox_disponibilidade"/>
+        </item>
+        <item row="4" column="0" colspan="2">
+         <widget class="QPushButton" name="pushButton_cadastrar">
+          <property name="text">
+           <string>Cadastrar</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+
+      <widget class="QWidget" name="tab_listagem">
+       <attribute name="title">
+        <string>Listagem</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QTableWidget" name="tableWidget_produtos"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_novo_produto">
+          <property name="text">
+           <string>Novo Produto</string>
+          </property>
+         </widget> 
+        </item>
+       </layout>
+      </widget> 
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

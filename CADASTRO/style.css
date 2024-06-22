@@ -1,0 +1,33 @@
+QMainWindow {
+    background-color: #f0f0f0; 
+}
+
+QWidget {
+    font-family: "Segoe UI", sans-serif; 
+}
+
+QTabWidget::pane {
+    border: none; 
+}
+
+QTabBar::tab {
+    background-color: #ffffff; 
+    padding: 10px;
+    border-radius: 5px;
+}
+
+QTabBar::tab:selected {
+    background-color: hsl(0, 0%, 100%); 
+}
+
+QPushButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: #0056b3; 
+}
