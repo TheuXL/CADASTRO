@@ -1,24 +1,24 @@
 import sys
 from PyQt5 import uic, QtWidgets, QtCore
 import pandas as pd
-import os  
+import os 
 
 class CadastroProduto(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
-       
+     
         script_dir = os.path.dirname(os.path.abspath(__file__))
-       
+        
         ui_path = os.path.join(script_dir, "formulario2.ui")
         uic.loadUi(ui_path, self)
-        self.df = pd.DataFrame(columns=["Nome", "Valor"])
+        self.df = pd.DataFrame(columns=["Nome", "Valor", "Disponível"]) 
         self.pushButton_cadastrar.clicked.connect(self.cadastrar_produto)
         self.pushButton_novo_produto.clicked.connect(self.abrir_cadastro)
         self.comboBox_disponibilidade.addItems(["Sim", "Não"])
         self.ordenacao_ascendente = True 
 
-        self.tableWidget_produtos.setColumnCount(2)
-        self.tableWidget_produtos.setHorizontalHeaderLabels(["Nome", "Valor"])
+        self.tableWidget_produtos.setColumnCount(3) 
+        self.tableWidget_produtos.setHorizontalHeaderLabels(["Nome", "Valor", "Disponível"]) 
         self.tableWidget_produtos.horizontalHeader().sectionClicked.connect(self.ordenar_por_coluna)  
         self.atualizar_tabela()
 
@@ -32,7 +32,7 @@ class CadastroProduto(QtWidgets.QMainWindow):
         valor = self.doubleSpinBox_valor.value()
         disponivel = self.comboBox_disponibilidade.currentText()
 
-        self.df.loc[len(self.df)] = [nome, valor]
+        self.df.loc[len(self.df)] = [nome, valor, disponivel] 
         self.df = self.df.sort_values("Valor", ascending=self.ordenacao_ascendente)  
        
         self.atualizar_tabela()
@@ -59,9 +59,8 @@ class CadastroProduto(QtWidgets.QMainWindow):
             row_position = self.tableWidget_produtos.rowCount()
             self.tableWidget_produtos.insertRow(row_position)
             self.tableWidget_produtos.setItem(row_position, 0, QtWidgets.QTableWidgetItem(row["Nome"]))
-            self.tableWidget_produtos.setItem(row_position, 1, QtWidgets.QTableWidgetItem(f'{row["Valor"]:.2f}')) 
-
-
+            self.tableWidget_produtos.setItem(row_position, 1, QtWidgets.QTableWidgetItem(f'{row["Valor"]:.2f}'))  
+            self.tableWidget_produtos.setItem(row_position, 2, QtWidgets.QTableWidgetItem(row["Disponível"])) 
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
