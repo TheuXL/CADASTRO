@@ -1,12 +1,16 @@
 import sys
 from PyQt5 import uic, QtWidgets, QtCore
 import pandas as pd
-
+import os  
 
 class CadastroProduto(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi("formulario2.ui", self)
+       
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+       
+        ui_path = os.path.join(script_dir, "formulario2.ui")
+        uic.loadUi(ui_path, self)
         self.df = pd.DataFrame(columns=["Nome", "Valor"])
         self.pushButton_cadastrar.clicked.connect(self.cadastrar_produto)
         self.pushButton_novo_produto.clicked.connect(self.abrir_cadastro)
@@ -15,10 +19,11 @@ class CadastroProduto(QtWidgets.QMainWindow):
 
         self.tableWidget_produtos.setColumnCount(2)
         self.tableWidget_produtos.setHorizontalHeaderLabels(["Nome", "Valor"])
-        self.tableWidget_produtos.horizontalHeader().sectionClicked.connect(self.ordenar_por_coluna)  # Conectar o sinal
+        self.tableWidget_produtos.horizontalHeader().sectionClicked.connect(self.ordenar_por_coluna)  
         self.atualizar_tabela()
 
-        with open("style.css", "r") as f:
+        style_path = os.path.join(script_dir, "style.css")  
+        with open(style_path, "r") as f:
             self.setStyleSheet(f.read())
 
     def cadastrar_produto(self):
@@ -54,7 +59,7 @@ class CadastroProduto(QtWidgets.QMainWindow):
             row_position = self.tableWidget_produtos.rowCount()
             self.tableWidget_produtos.insertRow(row_position)
             self.tableWidget_produtos.setItem(row_position, 0, QtWidgets.QTableWidgetItem(row["Nome"]))
-            self.tableWidget_produtos.setItem(row_position, 1, QtWidgets.QTableWidgetItem(f'{row["Valor"]:.2f}'))  # Formata o valor com duas casas decimais
+            self.tableWidget_produtos.setItem(row_position, 1, QtWidgets.QTableWidgetItem(f'{row["Valor"]:.2f}')) 
 
 
 
@@ -63,4 +68,3 @@ if __name__ == "__main__":
     window = CadastroProduto()
     window.show()
     sys.exit(app.exec())
-
